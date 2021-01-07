@@ -1,0 +1,17 @@
+<section class="modal-dialog-centered" style="height: 91vh; background-color: rgb(213, 213, 213);">
+    <div class="container"
+        style="color:rgb(138, 138, 138); background-color:white ;box-shadow:-4px 7px 10px 2px #888888; border: 1px solid #dddddd; border-radius:5px ; width:25rem; ">
+        <div style="margin: 10px;" class="container-2">
+            <h1 style="color:rgb(175, 175, 175);text-align: center;">Admin</h1>
+            <form action="/admin/adminlogin" method="POST" style="display: flex; flex-direction:column">
+            {{#if loginErr}}
+                <p style="color: rgb(216, 76, 76); margin:0; padding:0;">{{loginErr}}</p>
+            {{/if}}
+                <input class="form-control mt-3" type="text" name="Email" placeholder="Email"/>
+                <input class="form-control mt-3 mb-2" name="Password" type="password" placeholder="Password"/>
+                <button class="btn btn-success" style="margin-top:14px;" type='submit'>Login</button>
+            </form>
+        </div>
+        
+    </div>
+</section>

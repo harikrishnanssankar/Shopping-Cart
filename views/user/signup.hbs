@@ -1,0 +1,20 @@
+<section class="modal-dialog-centered" style="height: 91vh; background-color: rgb(213, 213, 213);">
+    <div class="container"
+        style="color:rgb(138, 138, 138); background-color:white ;box-shadow:-4px 7px 10px 2px #888888; border: 1px solid #dddddd; border-radius:5px ; width:25rem; ">
+        <div style="margin: 10px;" class="container-2">
+            <h1 style="color:rgb(175, 175, 175);text-align: center;">Register</h1>
+            <form style="display: flex; flex-direction:column" action="/signup" method="post">
+                <input class="form-control mt-2" type="text" name="Name" placeholder="Name" />
+                <input class="form-control mt-3" type="email" name="Email"placeholder="Email" />
+                <input class="form-control mt-3 mb-1" type="password" name="Password" placeholder="Password"/>
+                <button class="btn btn-success" style="margin-top:14px;" type='submit'>Signup</button>
+            </form>
+        </div>
+        <div style="align-items: center; display: flex; flex-direction:column; margin:10px" class="login__container_2">
+            <p style="margin-top:10px;text-align:center; width:100%; border-bottom: 1px solid #ddd; line-height:0.1em;">
+                <span style="background-color:white;">Already have account?</span>
+            </p>
+            <a style="width: 100%;margin-top:5px; margin-bottom:10px" class="btn btn-primary" href="/login">Login</a>
+        </div>
+    </div>
+</section>

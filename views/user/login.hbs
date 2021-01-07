@@ -1,0 +1,24 @@
+<section class="modal-dialog-centered" style="height: 91vh; background-color: rgb(213, 213, 213);">
+    <a href="/admin/login">admin</a>
+    <a href="/admin">landing page</a>
+    <div class="container"
+        style="color:rgb(138, 138, 138); background-color:white ;box-shadow:-4px 7px 10px 2px #888888; border: 1px solid #dddddd; border-radius:5px ; width:25rem; ">
+        <div style="margin: 10px;" class="container-2">
+            <h1 style="color:rgb(175, 175, 175);text-align: center;">Login</h1>
+            <form action="/login" method="POST" style="display: flex; flex-direction:column">
+            {{#if loginErr}}
+                <p style="color: rgb(216, 76, 76); margin:0; padding:0;">{{loginErr}}</p>
+            {{/if}}
+                <input class="form-control mt-3" type="text" name="Email" placeholder="Email"/>
+                <input class="form-control mt-3 mb-2" name="Password" type="password" placeholder="Password"/>
+                <button class="btn btn-success" style="margin-top:14px;" type='submit'>Login</button>
+            </form>
+        </div>
+        <div style="align-items: center; display: flex; flex-direction:column; margin:10px" class="login__container_2">
+            <p style="margin-top:10px;text-align:center; width:100%; border-bottom: 1px solid #ddd; line-height:0.1em;">
+                <span style="background-color:white;">New to kart?</span>
+            </p>
+            <a style="width: 100%; margin-bottom:10px;margin-top:5px;" class="btn btn-primary" href="/signup">Create Account</a>
+        </div>
+    </div>
+</section>

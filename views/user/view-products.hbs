@@ -1,0 +1,50 @@
+<!-- using inline css
+    <section style="background-color: rgb(213, 213, 213); height:max-content">
+    <div class="container-fluid pt-4">
+        <div class="row">
+            {{#each products}}
+            <div class="col-md-3 col-xs-6 col-sm-6 mt-2 mb-3 d-flex">
+                <div style="box-shadow:-8px 12px 14px  #888888; height:max-content; width:95%; align-items: center;" class="card card-body flex-fill" style="width: 18rem; height: 28rem">
+                    <img style="min-height:200px; max-height:230px; height:auto;  max-width:250px; width:auto; margin-top:10px" src="/product-image/{{this._id}}.jpg" class="card-img-top" alt="...">
+                    <div class="card-body flex-fill">
+                        <h6 class="card-title">{{this.Name}}</h6>
+                        <p>{{this.Description}}</p>
+                        <p>Rs.{{this.Price}}</p>
+                        <button class="btn btn-primary" onClick ="addToCart('{{this._id}}')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>-->
+
+<section class="view__Products">
+    <div class="container-fluid">
+        <div class="product__cards">
+            {{#each products}}
+            <div class="item__card">
+                <img src="/product-image/{{this._id}}.jpg" class="product__img" alt="...">
+                <div class="product__des">
+                    <h6 class="card-title">{{this.Name}}</h6>
+                    <p>{{this.Description}}</p>
+                    <p>Rs.{{this.Price}}</p>
+                    <button class="btn btn-primary" onClick="addToCart('{{this._id}}')">Add to Cart</button>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>
+
+<script>
+    function addToCart(proId) {
+        $.ajax({
+            url: '/add-to-cart/' + proId,
+            method: 'get',
+            success: (response) => {
+                alert(response)
+            }
+        })
+    }
+</script>

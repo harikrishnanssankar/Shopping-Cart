@@ -1,0 +1,16 @@
+<section class="view__Products">
+    <div class="container-fluid">
+        <div class="product__cards">
+            {{#each products}}
+            <div class="item__card">
+                <img src="/product-image/{{this.product._id}}.jpg" class="product__img" alt="...">
+                <div class="product__des">
+                    <h6 class="card-title">{{this.product.Name}}</h6>
+                    <p>Rs.{{this.product.Price}}</p>
+                    <p>Quantity:{{this.quantity}}</p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

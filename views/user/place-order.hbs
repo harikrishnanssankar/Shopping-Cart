@@ -1,0 +1,114 @@
+<section class="placeorder-section">
+    <div class="place-order">
+        <form id="checkout-form">
+            <div class="left-section">
+
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" name="address" class="input-form " id="address">
+                </div>
+                <div class="form-group">
+                    <label>Pincode</label>
+                    <input type="text" name="pincode" class="input-form" id="pincode">
+                </div>
+                <div class="form-group">
+                    <label>Mobile No</label>
+                    <input type="text" name="mobile" class="input-form" id="mobile">
+                </div>
+                <input type="text" name="userId" id="" value="{{user._id}}" hidden>
+
+            </div>
+            <div class="right-section">
+                <h5 class="">Total Amount: Rs.{{total}}</h5>
+                <h6 class="">Payment method</h6>
+                {{!-- <div class="custom-control custom-radio">
+                        <input type="radio" name="payment-method" value="COD" class="custom-control-input">
+                        <label class="custom-control-label">Cash on Delivery</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" name="payment-method" value="ONLINE" class="custom-control-input">
+                        <label class="custom-control-label">Online Payment</label>
+                    </div> --}}
+                <div>
+                    <input type="radio" name="payment-method" value="COD">
+                    <label>Cash on Delivery</label>
+                </div>
+                <div>
+                    <input type="radio" name="payment-method" value="ONLINE">
+                    <label>Online Payment</label>
+                </div>
+                <button type="submit" class="checkout-button btn btn-primary">Checkout</button>
+
+            </div>
+        </form>
+
+    </div>
+
+
+
+</section>
+
+
+<script>
+    $("#checkout-form").submit((e) => {
+        e.preventDefault()
+        $.ajax({
+            url: '/place-order',
+            method: 'post',
+            data: $('#checkout-form').serialize(),
+            success: (response) => {
+                console.log(response)
+                if (response.codSuccess) {
+                    location.href = '/order-success'
+                } else {
+                    razorpayPayment(response)
+                }
+            }
+        })
+    })
+    function razorpayPayment(order){
+        var options = {
+            "key": "rzp_test_TEHD8gGEeDZBxM", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "InsiderBytes",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+
+                verifyPayment(response,order)
+            },
+            "prefill": {
+                "name": "Gaurav Kumar",
+                "email": "gaurav.kumar@example.com",
+                "contact": "9999999999"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+    function verifyPayment(payment, order){
+        $.ajax({
+            url:'verify-payment',
+            data:{
+                payment,
+                order
+            },
+            method:'post',
+            success:(response) => {
+                if(response.status){
+                    location.href = '/order-success'
+                }else{
+                    alert("Payment failed")
+                }
+            }
+        })
+    }
+</script>
